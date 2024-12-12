@@ -17,7 +17,11 @@ export function Players(props) {
   });
 
   function handleGameEvent(event) {
-    setEvent([...events, event]);
+    let newEvents = [event, ...events];
+    if (newEvents.length > 10) {
+      newEvents = newEvents.slice(1, 10);
+    }
+    setEvent(newEvents);
   }
 
   function createMessageArray() {
@@ -44,7 +48,7 @@ export function Players(props) {
 
   return (
     <div className='players'>
-      Player
+      User
       <span className='player-name'>{userName}</span>
       <div id='player-messages'>{createMessageArray()}</div>
     </div>
